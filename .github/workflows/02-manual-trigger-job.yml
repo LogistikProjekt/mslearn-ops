@@ -1,7 +1,11 @@
 name: Manually trigger an Azure Machine Learning job
 
 on:
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - experimentation
 
 jobs:
   train:
@@ -15,5 +19,5 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
-
-
+    - name: Run ml Job
+      run: az ml job --list
