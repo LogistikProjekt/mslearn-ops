@@ -9,10 +9,12 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 
+import mlflow as ml
+
 # define functions
 def main(args):
     # TO DO: enable autologging
-
+    ml.sklearn.autolog()
 
     # read data
     df = get_csvs_df(args.training_data)
@@ -32,7 +34,6 @@ def get_csvs_df(path):
     if not csv_files:
         raise RuntimeError(f"No CSV files found in provided data path: {path}")
     return pd.concat((pd.read_csv(f) for f in csv_files), sort=False)
-
 
 
 
