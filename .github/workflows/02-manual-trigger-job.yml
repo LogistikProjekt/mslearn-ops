@@ -20,4 +20,6 @@ jobs:
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Run ml Job
-      run: az ml job --list
+      run: az ml job list
+    - name: List the filesystem
+      run: ls
